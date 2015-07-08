@@ -47,3 +47,16 @@ class License(object):
     def render(cls, path):
         cls.check()
         print('TODO Render {} to {}'.format(cls, path))
+
+
+_db = {}
+
+
+def register(cls):
+    '''
+    Register a license class to the database
+    '''
+    try:
+        _db[cls.id] = cls
+    except AttributeError:
+        raise AttributeError('{} has no mandatory \'id\' attribute'.format(cls.__name__))
