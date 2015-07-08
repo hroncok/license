@@ -32,3 +32,10 @@ class TestDB(object):
         '''
         with pytest.raises(KeyError):
             find('This is not an existing SPDX identifier')
+
+    @pytest.mark.parametrize('id', ('MIT',))
+    def test_exisitng(self, id):
+        '''
+        Test that an exisitng license can be found
+        '''
+        assert find(id).id == id

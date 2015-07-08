@@ -70,3 +70,7 @@ def find(id):
         return _db[id]
     except KeyError:
         raise KeyError('License with SPDX id {} not found'.format(id))
+
+
+# Keep this at the end of file, otherwise it doesn't work
+from .licences import *
