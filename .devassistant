@@ -1,0 +1,9 @@
+dependencies: []
+devassistant_version: 0.11.0
+original_kwargs:
+  github: !!python/unicode 'hroncok'
+  name: !!python/unicode 'license'
+  venv: !!python/unicode ''
+project_type:
+- python
+- lib
