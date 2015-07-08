@@ -60,3 +60,13 @@ def register(cls):
         _db[cls.id] = cls
     except AttributeError:
         raise AttributeError('{} has no mandatory \'id\' attribute'.format(cls.__name__))
+
+
+def find(id):
+    '''
+    Find a license class with the given SPDX id
+    '''
+    try:
+        return _db[id]
+    except KeyError:
+        raise KeyError('License with SPDX id {} not found'.format(id))
