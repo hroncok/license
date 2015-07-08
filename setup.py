@@ -1,25 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-try:
-    from setuptools import setup, find_packages
-except:
-    from distutils.core import setup, find_packages
+from setuptools import setup, find_packages
 
 setup(
     name='license',
-    version='0.0.1',
-    description='Short description',
+    version='0.1.dev1',
+    description='Library that encapsulates free software licenses',
     long_description=''.join(open('README.rst').readlines()),
-    keywords='some, keywords',
-    author='yourname',
-    author_email='yourmail',
-    license='GPLv2',
-    packages=find_packages(),
+    keywords='license',
+    author='Miro Hrončok',
+    author_email='miro@hroncok.cz',
+    license='MIT',
+    packages=[p for p in find_packages() if p != 'test'],
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
+        'License :: OSI Approved :: MIT License',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python',
         ]
