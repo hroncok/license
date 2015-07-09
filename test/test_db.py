@@ -1,10 +1,6 @@
 import pytest
 
-from license import License
-from license import register, find
-from license import find_by_key, build_index, delete_index
-from license import find_by_function
-from license import iter as license_iter
+import license
 from license.licences import MITLicense
 
 
@@ -18,42 +14,41 @@ class TestRegisterFind(object):
 
     @classmethod
     def teardown_class(cls):
-        import license
         del license._db['FOO']
 
     def test_register_no_id(self):
         '''
         Test that License classes cannot be registered without id
         '''
-        class FooLicense(License):
+        class FooLicense(license.License):
             pass
 
         with pytest.raises(AttributeError):
-            register(FooLicense)
+            license.register(FooLicense)
 
     def test_register_and_find(self):
         '''
         Test that License classes can be registered with id
         '''
-        class FooLicense(License):
+        class FooLicense(license.License):
             id = 'FOO'
 
-        register(FooLicense)
-        assert find('FOO') == FooLicense
+        license.register(FooLicense)
+        assert license.find('FOO') == FooLicense
 
     def test_nonexisting(self):
         '''
         Test that non-existing license cannot be found
         '''
         with pytest.raises(KeyError):
-            find('This is not an existing SPDX identifier')
+            license.find('This is not an existing SPDX identifier')
 
     @pytest.mark.parametrize('id', ('MIT',))
     def test_exisitng(self, id):
         '''
         Test that an exisitng license can be found
         '''
-        assert find(id).id == id
+        assert license.find(id).id == id
 
 
 class TestFindByFunction(object):
@@ -63,24 +58,24 @@ class TestFindByFunction(object):
 
     @pytest.mark.parametrize('multiple', (True, False))
     def test_find_by_true(self, multiple):
-        result = find_by_function(lambda x: True, multiple)
+        result = license.find_by_function(lambda x: True, multiple)
         assert result
 
     def test_find_by_false_multiple(self):
-        results = find_by_function(lambda x: False, multiple=True)
+        results = license.find_by_function(lambda x: False, multiple=True)
         assert results == []
 
     def test_find_by_false_single(self):
         with pytest.raises(KeyError):
-            result = find_by_function(lambda x: False, multiple=False)
+            result = license.find_by_function(lambda x: False, multiple=False)
 
     def test_find_by_function_is_equal(self):
-        result = find_by_function(lambda x: x == MITLicense, multiple=False)
+        result = license.find_by_function(lambda x: x == MITLicense, multiple=False)
         assert result == MITLicense
 
     @pytest.mark.parametrize(('text', 'res'), (('license', True), ('foobar', False)))
     def test_find_by_function_lower_endswith(self, text, res):
-        results = find_by_function(lambda x: x.name.lower().endswith(text), multiple=True)
+        results = license.find_by_function(lambda x: x.name.lower().endswith(text), multiple=True)
         assert (MITLicense in results) == res
 
 
@@ -95,7 +90,7 @@ class TestFindByKeyWithoutIndex(object):
         Test that it is possible to find the license by various keys
         '''
         value = getattr(MITLicense, key)
-        results = find_by_key(key, value)
+        results = license.find_by_key(key, value)
         assert results == [MITLicense]
 
     @pytest.mark.parametrize('key', KEYS)
@@ -104,7 +99,7 @@ class TestFindByKeyWithoutIndex(object):
         Test that it is possible to find the license by various keys
         '''
         value = getattr(MITLicense, key)
-        result = find_by_key(key, value, multiple=False)
+        result = license.find_by_key(key, value, multiple=False)
         assert result == MITLicense
 
     @pytest.mark.parametrize('key', KEYS)
@@ -113,7 +108,7 @@ class TestFindByKeyWithoutIndex(object):
         Test that when finding multiple results, empty list is returned when nothing found
         '''
         value = 'nonexistent value'
-        results = find_by_key(key, value)
+        results = license.find_by_key(key, value)
         assert results == []
 
     @pytest.mark.parametrize('key', KEYS)
@@ -123,7 +118,7 @@ class TestFindByKeyWithoutIndex(object):
         '''
         value = 'nonexistent value'
         with pytest.raises(KeyError):
-                result = find_by_key(key, value, multiple=False)
+                result = license.find_by_key(key, value, multiple=False)
 
 
 class TestFindByKeyWithIndex(TestFindByKeyWithoutIndex):
@@ -134,12 +129,12 @@ class TestFindByKeyWithIndex(TestFindByKeyWithoutIndex):
     @classmethod
     def setup_class(cls):
         for key in KEYS:
-            build_index(key)
+            license.build_index(key)
 
     @classmethod
     def teardown_class(cls):
         for key in KEYS:
-            delete_index(key)
+            license.delete_index(key)
 
 
 class TestIter(object):
@@ -148,5 +143,5 @@ class TestIter(object):
     '''
 
     def test_iter(self):
-        for license in license_iter():
+        for cls in license.iter():
             pass
