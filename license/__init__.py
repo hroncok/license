@@ -147,5 +147,15 @@ def find_by_key(key, value, multiple=True):
     return find_by_function(function, multiple=multiple)
 
 
+def iter():
+    '''
+    Get an iterable object of all licenses
+    '''
+    try:
+        return _db.itervalues()
+    except AttributeError:
+        return _db.values()
+
+
 # Keep this at the end of file, otherwise it doesn't work
 from .licences import *

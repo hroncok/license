@@ -4,6 +4,7 @@ from license import License
 from license import register, find
 from license import find_by_key, build_index, delete_index
 from license import find_by_function
+from license import iter as license_iter
 from license.licences import MITLicense
 
 
@@ -139,3 +140,13 @@ class TestFindByKeyWithIndex(TestFindByKeyWithoutIndex):
     def teardown_class(cls):
         for key in KEYS:
             delete_index(key)
+
+
+class TestIter(object):
+    '''
+    Tests for the iter() function
+    '''
+
+    def test_iter(self):
+        for license in license_iter():
+            pass
