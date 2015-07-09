@@ -55,7 +55,7 @@ class License(object):
         Render the LICENSE file
         '''
         cls.check()
-        template = License.jinja_env.get_template(cls.id)
+        template = cls.jinja_env.get_template(cls.id)
         return template.render(**kwargs)
 
 
