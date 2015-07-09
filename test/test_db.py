@@ -9,7 +9,10 @@ from license.licences import MITLicense
 KEYS = ('rpm', 'name', 'url')
 
 
-class TestDB(object):
+class TestRegisterFind(object):
+    '''
+    Test register() and find()
+    '''
 
     def test_register_no_id(self):
         '''
