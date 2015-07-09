@@ -1,3 +1,6 @@
+import jinja2
+
+
 class classproperty(object):
     '''
     Decorator for class property
@@ -28,6 +31,9 @@ class License(object):
 
     __metaclass__ = LicenseClass
 
+    jinja_env = jinja2.Environment(loader=jinja2.PackageLoader('license', 'templates'),
+                                   undefined=jinja2.StrictUndefined)
+
     def __init__(self):
         raise TypeError('License classes are not about to be instantiated')
 
@@ -44,9 +50,13 @@ class License(object):
             raise TypeError('This is a virtual class, do not call it\'s methods')
 
     @classmethod
-    def render(cls, path):
+    def render(cls, **kwargs):
+        '''
+        Render the LICENSE file
+        '''
         cls.check()
-        print('TODO Render {} to {}'.format(cls, path))
+        template = License.jinja_env.get_template(cls.id)
+        return template.render(**kwargs)
 
 
 _db = {}

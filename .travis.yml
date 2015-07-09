@@ -5,5 +5,7 @@ python:
 - '3.4'
 - pypy3
 - pypy
+install:
+- pip install jinja2
 script:
 - py.test -v

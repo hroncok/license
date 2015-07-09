@@ -12,6 +12,7 @@ setup(
     author_email='miro@hroncok.cz',
     license='MIT',
     packages=[p for p in find_packages() if p != 'test'],
+    install_requires=['jinja2'],
     classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',
