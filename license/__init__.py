@@ -106,6 +106,24 @@ def delete_index(key):
         del _indexes[key]
 
 
+def find_by_function(function, multiple=True):
+    '''
+    Finds a license or licenses for which the given function equals True
+    The function should take one argumnet, the License class, and return Boolean-ish
+    the multiple argument behaves exactly the same as with find_by_key()
+    '''
+    results = []
+    for cls in _db.values():
+        if function(cls):
+            if not multiple:
+                return cls
+            results.append(cls)
+
+    if not multiple:
+        raise KeyError('No such license found')
+    return results
+
+
 def find_by_key(key, value, multiple=True):
     '''
     Finds a license with given value as a key
@@ -113,8 +131,6 @@ def find_by_key(key, value, multiple=True):
     If multiple is True, returns an array of results (might be empty)
     Calling build_index(key) might speed things up if you want to search by the same key often
     '''
-    msg = 'No license with {}={} found'.format(key, value)
-
     if key in _indexes:
         try:
             if multiple:
@@ -123,18 +139,12 @@ def find_by_key(key, value, multiple=True):
         except KeyError:
             if multiple:
                 return []
-            raise KeyError(msg)
+            raise KeyError('No such license found')
 
-    results = []
-    for cls in _db.values():
-        if hasattr(cls, key) and getattr(cls, key) == value:
-            if not multiple:
-                return cls
-            results.append(cls)
+    def function(cls):
+        return hasattr(cls, key) and getattr(cls, key) == value
 
-    if not multiple:
-        raise KeyError(msg)
-    return results
+    return find_by_function(function, multiple=multiple)
 
 
 # Keep this at the end of file, otherwise it doesn't work

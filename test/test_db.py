@@ -3,6 +3,7 @@ import pytest
 from license import License
 from license import register, find
 from license import find_by_key, build_index, delete_index
+from license import find_by_function
 from license.licences import MITLicense
 
 
@@ -13,6 +14,11 @@ class TestRegisterFind(object):
     '''
     Test register() and find()
     '''
+
+    @classmethod
+    def teardown_class(cls):
+        import license
+        del license._db['FOO']
 
     def test_register_no_id(self):
         '''
@@ -47,6 +53,34 @@ class TestRegisterFind(object):
         Test that an exisitng license can be found
         '''
         assert find(id).id == id
+
+
+class TestFindByFunction(object):
+    '''
+    Tests for find_by_function()
+    '''
+
+    @pytest.mark.parametrize('multiple', (True, False))
+    def test_find_by_true(self, multiple):
+        result = find_by_function(lambda x: True, multiple)
+        assert result
+
+    def test_find_by_false_multiple(self):
+        results = find_by_function(lambda x: False, multiple=True)
+        assert results == []
+
+    def test_find_by_false_single(self):
+        with pytest.raises(KeyError):
+            result = find_by_function(lambda x: False, multiple=False)
+
+    def test_find_by_function_is_equal(self):
+        result = find_by_function(lambda x: x == MITLicense, multiple=False)
+        assert result == MITLicense
+
+    @pytest.mark.parametrize(('text', 'res'), (('license', True), ('foobar', False)))
+    def test_find_by_function_lower_endswith(self, text, res):
+        results = find_by_function(lambda x: x.name.lower().endswith(text), multiple=True)
+        assert (MITLicense in results) == res
 
 
 class TestFindByKeyWithoutIndex(object):
