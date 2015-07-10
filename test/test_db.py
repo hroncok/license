@@ -4,7 +4,7 @@ import license
 from license.licences import MITLicense
 
 
-KEYS = ('rpm', 'name', 'url')
+KEYS = ('rpm', 'name', 'python', 'url')
 
 
 class TestRegisterFind(object):
