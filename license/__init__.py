@@ -68,6 +68,16 @@ def register(cls):
     Register a license class to the database
     '''
     try:
+        subclass = issubclass(cls, License)
+    except TypeError:
+        subclass = False
+    if not subclass:
+        raise TypeError('register() got something that\'s not a subclass of License')
+
+    if cls is License:
+        raise TypeError('register() needs a subclass of License, not License itself')
+
+    try:
         _db[cls.id] = cls
     except AttributeError:
         raise AttributeError('{} has no mandatory \'id\' attribute'.format(cls.__name__))
@@ -157,5 +167,12 @@ def iter():
         return _db.values()
 
 
-# Keep this at the end of file, otherwise it doesn't work
-from .licenses import *
+# Keep this import at the end of file, otherwise it doesn't work
+from . import licenses
+
+# Auto-register all licenses defined in licenses submodule
+for name, cls in vars(licenses).items():
+    try:
+        register(cls)
+    except TypeError:
+        pass

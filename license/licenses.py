@@ -1,5 +1,4 @@
 from . import License
-from . import register
 
 
 class MITLicense(License):
@@ -10,6 +9,3 @@ class MITLicense(License):
     rpm = 'MIT'
     python = 'License :: OSI Approved :: MIT License'
     url = 'http://opensource.org/licenses/MIT'
-
-
-register(MITLicense)
