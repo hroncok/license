@@ -1,7 +1,7 @@
 import pytest
 
 import license
-from license.licences import MITLicense
+from license.licenses import MITLicense
 
 
 KEYS = ('rpm', 'name', 'python', 'url')

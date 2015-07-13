@@ -158,4 +158,4 @@ def iter():
 
 
 # Keep this at the end of file, otherwise it doesn't work
-from .licences import *
+from .licenses import *
