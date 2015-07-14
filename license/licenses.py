@@ -1,4 +1,4 @@
-from . import License
+from .base import License
 
 
 class MITLicense(License):

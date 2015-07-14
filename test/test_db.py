@@ -1,6 +1,7 @@
 import pytest
 
 import license
+from license import base
 from license.licenses import MITLicense
 
 
@@ -20,7 +21,7 @@ class TestRegisterFind(object):
         '''
         Test that License classes cannot be registered without id
         '''
-        class FooLicense(license.License):
+        class FooLicense(base.License):
             pass
 
         with pytest.raises(AttributeError):
@@ -30,7 +31,7 @@ class TestRegisterFind(object):
         '''
         Test that License classes can be registered with id
         '''
-        class FooLicense(license.License):
+        class FooLicense(base.License):
             id = 'FOO'
 
         license.register(FooLicense)

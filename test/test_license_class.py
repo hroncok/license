@@ -2,7 +2,7 @@ import sys
 
 import pytest
 
-from license import License
+from license.base import License
 
 
 class TestLicenseClass(object):
