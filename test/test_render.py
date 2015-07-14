@@ -20,6 +20,16 @@ class TestRender(object):
         assert email in text
         assert 'Permission is hereby granted' in text
 
+    @pytest.mark.parametrize('id', ('GPL-3.0+', 'GPL-3.0'))
+    def test_header(self, id):
+        '''
+        Test that License classes with header render it
+        '''
+        email = 'peter@foo.org'
+        header = license.find(id).header(year=2015, name='Petr Foo', email=email)
+        assert email in header
+        assert 'This program is free software' in header
+
     def test_header_no_template(self):
         '''
         Test that License classes without header templates raise AttributeError during .header()
