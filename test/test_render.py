@@ -20,7 +20,7 @@ class TestRender(object):
         assert email in text
         assert 'Permission is hereby granted' in text
 
-    @pytest.mark.parametrize('id', ('GPL-3.0+', 'GPL-3.0'))
+    @pytest.mark.parametrize('id', ('GPL-2.0+', 'GPL-2.0', 'GPL-3.0+', 'GPL-3.0'))
     def test_header(self, id):
         '''
         Test that License classes with header render it
