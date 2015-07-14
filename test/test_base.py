@@ -1,8 +1,10 @@
 import sys
 
+import jinja2
 import pytest
 
-from license.base import License
+import license
+from license import base
 
 
 class TestLicenseClass(object):
@@ -12,13 +14,13 @@ class TestLicenseClass(object):
         Test that instantiating License class raises TypeError
         '''
         with pytest.raises(TypeError):
-            l = License()
+            l = base.License()
 
     def test_no_instances_subclass(self):
         '''
         Test that instantiating a subclass of License class raises TypeError
         '''
-        class FooLicense(License):
+        class FooLicense(base.License):
             pass
 
         with pytest.raises(TypeError):
@@ -28,7 +30,7 @@ class TestLicenseClass(object):
         '''
         Test that subclass'es docstring is successfully returned as name
         '''
-        class FooLicense(License):
+        class FooLicense(base.License):
             '''
             Foo License
             '''
@@ -42,7 +44,7 @@ class TestLicenseClass(object):
         '''
         Test that string representation of License subclass is based on docstring
         '''
-        class FooLicense(License):
+        class FooLicense(base.License):
             '''
             Foo License
             '''
@@ -59,7 +61,7 @@ class TestLicenseClass(object):
         '''
         Test that empty subclass'es docstring raises AttributeError when accesing the name
         '''
-        class FooLicense(License):
+        class FooLicense(base.License):
             pass
 
         with pytest.raises(AttributeError):
@@ -70,4 +72,38 @@ class TestLicenseClass(object):
         Test that it is not possible to run render on License
         '''
         with pytest.raises(TypeError):
-            License.render()
+            base.License.render()
+
+
+class TestCustomBaseLicenseFactory(object):
+
+    @classmethod
+    def setup_class(self):
+        sbl = base.custom_license_base_class(loader=jinja2.FileSystemLoader('test/files'))
+
+        class CustomLicense(sbl):
+            '''Custom'''
+            id = 'CUSTOM'
+            url = 'URL'
+
+        self.custom_cls = CustomLicense
+
+    def test_render_custom_license_with_loader(self):
+        '''
+        Test we can render custom class with custom template loader
+        '''
+        assert self.custom_cls.render(text='foo') == 'START foo END'
+
+    def test_register_find_custom_license(self):
+        '''
+        Test that custom license can be registered and found
+        '''
+        try:
+            license.register(self.custom_cls)
+            assert license.find('CUSTOM') == self.custom_cls
+        finally:
+            # unregister, just in case
+            try:
+                del license._db['CUSTOM']
+            except:
+                pass

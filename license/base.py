@@ -57,3 +57,17 @@ class License(object):
         cls.check()
         template = cls.jinja_env.get_template(cls.id)
         return template.render(**kwargs)
+
+
+def custom_license_base_class(loader):
+    '''
+    A factory that generates a Custom License Base Class.
+    Requires a jinja2.<something>Loader as an argument
+    '''
+    if not isinstance(loader, jinja2.loaders.BaseLoader):
+        raise AttributeError('loader has to be a jinja2.<something>Loader instance')
+
+    class CustomBaseLicense(License):
+        jinja_env = jinja2.Environment(loader=loader, undefined=jinja2.StrictUndefined)
+
+    return CustomBaseLicense
