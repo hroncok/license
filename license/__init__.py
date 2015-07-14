@@ -110,15 +110,16 @@ def iter():
         return _db.values()
 
 
-def _autoregister():
+def autoregister(module=licenses, ignore=[]):
     '''
-    Automatically register all licenses from licenses.py
+    Automatically register all licenses from a given module
     '''
-    for name, cls in vars(licenses).items():
-        try:
-            register(cls)
-        except TypeError:
-            pass
+    for name, cls in vars(module).items():
+        if cls not in ignore:
+            try:
+                register(cls)
+            except TypeError:
+                pass
 
 
-_autoregister()
+autoregister()
