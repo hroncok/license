@@ -20,6 +20,13 @@ class TestRender(object):
         assert email in text
         assert 'Permission is hereby granted' in text
 
+    def test_header_no_template(self):
+        '''
+        Test that License classes without header templates raise AttributeError during .header()
+        '''
+        with pytest.raises(AttributeError):
+            header = license.find('MIT').header()
+
     def test_render_undefined(self):
         '''
         Test that License classes will fail to render without all variables defined

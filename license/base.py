@@ -58,6 +58,18 @@ class License(object):
         template = cls.jinja_env.get_template(cls.id)
         return template.render(**kwargs)
 
+    @classmethod
+    def header(cls, **kwargs):
+        '''
+        Render the LICENSE file
+        '''
+        cls.check()
+        try:
+            template = cls.jinja_env.get_template(cls.id + '__header')
+            return template.render(**kwargs)
+        except jinja2.TemplateNotFound:
+            raise AttributeError('{} uses no header'.format(cls.name))
+
 
 def custom_license_base_class(loader):
     '''
