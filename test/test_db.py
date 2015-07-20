@@ -121,6 +121,13 @@ class TestFindByKeyWithoutIndex(object):
         with pytest.raises(KeyError):
                 result = license.find_by_key(key, value, multiple=False)
 
+    def test_bsd_finds_multiple(self):
+        '''
+        Test that searching for BSD in rpm key return at least two results
+        '''
+        results = license.find_by_key('rpm', 'BSD')
+        assert len(results) >= 2
+
 
 class TestFindByKeyWithIndex(TestFindByKeyWithoutIndex):
     '''

@@ -11,6 +11,24 @@ class MITLicense(License):
     url = 'http://opensource.org/licenses/MIT'
 
 
+class BSD2ClauseLicense(License):
+    '''
+    BSD 2-clause "Simplified" License
+    '''
+    id = 'BSD-2-Clause'
+    rpm = 'BSD'
+    python = 'License :: OSI Approved :: BSD License'
+    url = 'http://opensource.org/licenses/BSD-2-Clause'
+
+
+class BSD3ClauseLicense(BSD2ClauseLicense):
+    '''
+    BSD 3-clause "New" or "Revised" License
+    '''
+    id = 'BSD-3-Clause'
+    url = 'http://opensource.org/licenses/BSD-3-Clause'
+
+
 class GPLv2LaterLicense(License):
     '''
     GNU General Public License v2.0 or later
