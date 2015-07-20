@@ -65,3 +65,41 @@ class GPLv3OnlyLicense(GPLv3LaterLicense):
     id = 'GPL-3.0'
     rpm = 'GPLv3'
     python = 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+
+
+class LGPLv21LaterLicense(License):
+    '''
+    GNU Lesser General Public License v2.1 or later
+    '''
+    id = 'LGPL-2.1+'
+    rpm = 'LGPLv2+'
+    python = 'License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)'
+    url = 'http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html'
+
+
+class LGPLv21OnlyLicense(LGPLv21LaterLicense):
+    '''
+    GNU Lesser General Public License v2.1 only
+    '''
+    id = 'LGPL-2.1'
+    rpm = 'LGPLv2'
+    python = 'License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)'
+
+
+class LGPLv3LaterLicense(License):
+    '''
+    GNU Lesser General Public License v3.0 or later
+    '''
+    id = 'LGPL-3.0+'
+    rpm = 'LGPLv3+'
+    python = 'License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)'
+    url = 'http://www.gnu.org/licenses/lgpl-3.0.html'
+
+
+class LGPLv3OnlyLicense(LGPLv3LaterLicense):
+    '''
+    GNU Lesser General Public License v3.0 only
+    '''
+    id = 'LGPL-3.0'
+    rpm = 'LGPLv3'
+    python = 'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)'
