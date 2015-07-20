@@ -9,3 +9,11 @@ install:
 - pip install jinja2
 script:
 - py.test -v
+deploy:
+  provider: pypi
+  user: hroncok
+  password:
+    secure: cDzuCYgvEwNguDTzNl3FZpef/8FpEEKiZUOxElFmEHNdXHhl3NfBmlJs4FC3PEHFdp0QsIt9VCsCYgMi/OKa19/PVX3ROrf4vaa4XUybBqRj4G2ZvOvKuVtnxAR/cHx7XDSdsqDx73v5/mstaM6/8DD5f9hpAOt3Yh3wAMw2mHS3PyS0fXNvNRw4AtM1ayrHGasdG1GlSD2YvXN55+sZ7hYQdQzrJjEaF71+ax/HLpeBZ94RWM+lMOeA4s1an5oLbgT1EyfvhAgGAOe/I3rALl0t2EX89oJu8gKlYJyZvFlToNUqn6DW3QE45UvG+EcHWUR3ta/zIlxZZiDbBRimC3S/34tUgE3LjSqhgiRBCQiIGXp2QkhVjjl7Eo6EoamVnauZVH79xGcwn9RIwk6oDckAjO4Y8LAVe7+4h+16yHOSy99Nnq2mBxgiM44TlkioGEi3Ur/RokYn398FHKXdGDP4U1EleIZyIERjRL8m28HcfcRMAjrZ1gQCdZODhtvjHtq1DZeaTyR6SiSkFhvKnjUR9/QnecrCORmtZCs3BgNLTrL5zfjThaZeHPzkGsb6i6Er96qRW1ImdWZT+TjmSQtJk79sw/zJBR9lg1Gpt/SFDiw25reGoFzwItGNhtZbnM5/yIsdxOZshVPKsJM58VwuNRkIq8TMA4o2IguEl7A=
+  on:
+    tags: true
+    repo: hroncok/license
