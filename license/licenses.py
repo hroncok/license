@@ -103,3 +103,22 @@ class LGPLv3OnlyLicense(LGPLv3LaterLicense):
     id = 'LGPL-3.0'
     rpm = 'LGPLv3'
     python = 'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)'
+
+
+class AGPLv3LaterLicense(License):
+    '''
+    GNU Affero General Public License v3.0 or later
+    '''
+    id = 'AGPL-3.0+'
+    rpm = 'AGPLv3+'
+    python = 'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)'
+    url = 'http://www.gnu.org/licenses/agpl-3.0.html'
+
+
+class AGPLv3OnlyLicense(AGPLv3LaterLicense):
+    '''
+    GNU Affero General Public License v3.0 v3.0 only
+    '''
+    id = 'AGPL-3.0'
+    rpm = 'AGPLv3'
+    python = 'License :: OSI Approved :: GNU Affero General Public License v3'
