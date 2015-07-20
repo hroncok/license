@@ -148,3 +148,31 @@ register all classes present in given module. You will not want to register your
 
 Note that if you add custom licenses and use ``license.build_index()``, you want to build the index
 after registering them. Calling ``build_index()`` multiple times is safe.
+
+(Possibly) Frequently Asked Questions
+-------------------------------------
+
+Why are licenses represented as subclasses and not instances of ``License``?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This way, it is easier to inherit data between multiple licenses. The definition of classes is
+easier maintainable and readable.
+
+Isn't ``license`` a reserved name?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Yes, it is, it prints the Python's license. Possibly something you would only use in an interactive
+Python console. By importing this library, you are overriding it. We could have named the library
+with something cool and unique, such as ``licenraptor``, but we wanted to make the name as easy as
+possible. In case you don't like this, you can always do ``import license as somethignelse``.
+
+Aren't there already Python tools that can render license texts?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Yes, they are. However all of them are command line utilities and provide no API for Python
+programmers.
+
+* `choosealicense-cli <https://pypi.python.org/pypi/choosealicense-cli>`_
+* `licenser <https://pypi.python.org/pypi/licenser>`_
+* `licen <https://pypi.python.org/pypi/licen>`_
+* `garnish <https://pypi.python.org/pypi/garnish>`_
