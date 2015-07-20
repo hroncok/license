@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from datetime import date
+
 import jinja2
 import pytest
 
@@ -18,6 +20,7 @@ class TestRender(object):
 
         assert name in text
         assert email in text
+        assert str(date.today().year) in text
         assert 'Permission is hereby granted' in text
 
     @pytest.mark.parametrize('id', ('GPL-2.0+', 'GPL-2.0', 'GPL-3.0+', 'GPL-3.0'))
@@ -26,8 +29,9 @@ class TestRender(object):
         Test that License classes with header render it
         '''
         email = 'peter@foo.org'
-        header = license.find(id).header(year=2015, name='Petr Foo', email=email)
+        header = license.find(id).header(name='Petr Foo', email=email)
         assert email in header
+        assert str(date.today().year) in header
         assert 'This program is free software' in header
 
     def test_header_no_template(self):

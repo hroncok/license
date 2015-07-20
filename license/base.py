@@ -1,3 +1,5 @@
+from datetime import date
+
 import jinja2
 
 
@@ -45,7 +47,13 @@ class License(object):
         return name.strip()
 
     @classmethod
-    def check(cls):
+    def _add_year_to_kwargs(cls, kwargs):
+        if 'year' not in kwargs:
+            kwargs['year'] = date.today().year
+        return kwargs
+
+    @classmethod
+    def _check(cls):
         if cls == License:
             raise TypeError('This is a virtual class, do not call it\'s methods')
 
@@ -54,7 +62,8 @@ class License(object):
         '''
         Render the LICENSE file
         '''
-        cls.check()
+        cls._check()
+        kwargs = cls._add_year_to_kwargs(kwargs)
         template = cls.jinja_env.get_template(cls.id)
         return template.render(**kwargs)
 
@@ -63,7 +72,8 @@ class License(object):
         '''
         Render the LICENSE file
         '''
-        cls.check()
+        cls._check()
+        kwargs = cls._add_year_to_kwargs(kwargs)
         try:
             template = cls.jinja_env.get_template(cls.id + '__header')
             return template.render(**kwargs)
