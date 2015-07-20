@@ -11,6 +11,7 @@ setup(
     author='Miro Hrončok',
     author_email='miro@hroncok.cz',
     license='MIT',
+    url='https://github.com/hroncok/license',
     packages=[p for p in find_packages() if p != 'test'],
     package_data={'license': ['templates/*']},
     install_requires=['jinja2'],
