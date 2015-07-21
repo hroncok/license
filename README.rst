@@ -1,6 +1,15 @@
 license
 =======
 
+.. image:: https://badge.fury.io/py/license.svg
+        :target: http://badge.fury.io/py/license
+
+.. image:: http://img.shields.io/:license-mit-green.svg?style=flat
+        :target: http://opensource.org/licenses/MIT
+
+.. image:: https://travis-ci.org/hroncok/license.png?branch=master
+        :target: https://travis-ci.org/hroncok/license
+
 license is a Python library providing some metadata about common free software licenses, such as
 GNU GPL, MIT and others. It is compatible with Python 2.7 and Python 3.
 
