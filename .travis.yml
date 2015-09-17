@@ -3,10 +3,12 @@ python:
 - '2.7'
 - '3.3'
 - '3.4'
+- '3.5'
 - pypy3
 - pypy
 install:
 - pip install jinja2
+- pip install pytest==2.7.3
 script:
 - py.test -v
 deploy:
