@@ -11,7 +11,7 @@ license
         :target: https://travis-ci.org/hroncok/license
 
 license is a Python library providing some metadata about common free software licenses, such as
-GNU GPL, MIT and others. It is compatible with Python 2.7 and Python 3.
+GNU GPL, MIT and others. It is compatible with Python 3.3+ and legacy Python 2.7.
 
 Basic usage
 -----------
