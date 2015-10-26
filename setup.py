@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='license',
-    version='0.1a1',
+    version='0.1a2',
     description='Library that encapsulates free software licenses',
     long_description=''.join(open('README.rst').readlines()),
     keywords='license',
