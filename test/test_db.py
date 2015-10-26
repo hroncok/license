@@ -15,7 +15,7 @@ class TestRegisterFind(object):
 
     @classmethod
     def teardown_class(cls):
-        del license._db['FOO']
+        del license.core._db['FOO']
 
     def test_register_no_id(self):
         '''

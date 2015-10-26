@@ -104,6 +104,6 @@ class TestCustomBaseLicenseFactory(object):
         finally:
             # unregister, just in case
             try:
-                del license._db['CUSTOM']
+                del license.core._db['CUSTOM']
             except:
                 pass
