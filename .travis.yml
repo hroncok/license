@@ -6,6 +6,9 @@ python:
 - '3.5'
 - pypy3
 - pypy
+os:
+- linux
+- osx
 install:
 - pip install jinja2
 - pip install pytest==2.7.3
