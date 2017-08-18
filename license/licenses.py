@@ -122,3 +122,33 @@ class AGPLv3OnlyLicense(AGPLv3LaterLicense):
     id = 'AGPL-3.0'
     rpm = 'AGPLv3'
     python = 'License :: OSI Approved :: GNU Affero General Public License v3'
+
+
+class Apachev1License(License):
+    '''
+    Apache License Version 1.0
+    '''
+    id = 'Apache-1.0'
+    rpm = 'ASL 1.0'
+    python = 'License :: OSI Approved :: Apache Software License'
+    url = 'https://www.apache.org/licenses/LICENSE-1.0'
+
+
+class Apachev11License(License):
+    '''
+    Apache License Version 1.1
+    '''
+    id = 'Apache-1.1'
+    rpm = 'ASL 1.1'
+    python = 'License :: OSI Approved :: Apache Software License'
+    url = 'https://www.apache.org/licenses/LICENSE-1.1'
+
+
+class Apachev2License(License):
+    '''
+    Apache License Version 2.0
+    '''
+    id = 'Apache-2.0'
+    rpm = 'ASL 2.0'
+    python = 'License :: OSI Approved :: Apache Software License'
+    url = 'https://www.apache.org/licenses/LICENSE-2.0'
