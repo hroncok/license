@@ -134,21 +134,19 @@ class Apachev1License(License):
     url = 'https://www.apache.org/licenses/LICENSE-1.0'
 
 
-class Apachev11License(License):
+class Apachev11License(Apachev1License):
     '''
     Apache License Version 1.1
     '''
     id = 'Apache-1.1'
     rpm = 'ASL 1.1'
-    python = 'License :: OSI Approved :: Apache Software License'
     url = 'https://www.apache.org/licenses/LICENSE-1.1'
 
 
-class Apachev2License(License):
+class Apachev2License(Apachev1License):
     '''
     Apache License Version 2.0
     '''
     id = 'Apache-2.0'
     rpm = 'ASL 2.0'
-    python = 'License :: OSI Approved :: Apache Software License'
     url = 'https://www.apache.org/licenses/LICENSE-2.0'
