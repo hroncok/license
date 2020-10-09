@@ -150,3 +150,12 @@ class Apachev2License(Apachev1License):
     id = 'Apache-2.0'
     rpm = 'ASL 2.0'
     url = 'https://www.apache.org/licenses/LICENSE-2.0'
+
+class CreativeCommons0License(License):
+	'''
+	Creative Commons Zero v1.0 Universal
+	'''
+	id = 'CC0-1.0'
+	rpm = 'CC0'
+	python = 'License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication'
+	url = 'https://creativecommons.org/publicdomain/zero/1.0/'
