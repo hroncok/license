@@ -37,8 +37,8 @@ Each license is a static class providing a few properties:
     'License :: OSI Approved :: MIT License'
 
 License classes also offer a static method ``render()`` that will output the entire license text.
-Some variables have to be passed to it, usually ``name``, ``email`` and optional ``year``
-(current year is used when omitted).
+Some variables have to be passed to it, usually ``name``, ``email`` (optional, if omitted or
+`None` no email address will be added) and ``year`` (optional, current year is used when omitted).
 
 .. code-block:: python
 
@@ -46,6 +46,17 @@ Some variables have to be passed to it, usually ``name``, ``email`` and optional
     '''The MIT License (MIT)
     
     Copyright (c) 2015 Petr Foo <petr@foo.org>
+    
+    Permission is hereby granted... (snip)'''
+
+or
+
+.. code-block:: python
+
+    mit.render(name='Petr Foo', year=2000)
+    '''The MIT License (MIT)
+    
+    Copyright (c) 2000 Petr Foo
     
     Permission is hereby granted... (snip)'''
 
